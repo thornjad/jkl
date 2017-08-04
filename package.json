@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/raindeer44/spheroid.git"
   },
-  "author": "",
+  "authors": [
+    "Jade Thornton",
+    "Kent Miller"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/raindeer44/spheroid/issues"
