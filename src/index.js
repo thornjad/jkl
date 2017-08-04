@@ -1,3 +1,22 @@
 #!/usr/bin/env node
 
-console.log('it works!');
+const program = require('commander');
+const co = require('co');
+const prompt = require('co-prompt');
+
+const version = '0.1.0';
+
+let testtmp;
+
+program
+  .version(version)
+  .arguments('[tst]')
+  .option('-b, --bbq', 'Add BBQ sauce')
+  .action(function(tst) {
+    console.log('hello');
+  })
+  .parse(process.argv);
+
+co(function * () {
+  console.log(`Spheroid ${version}`);
+})
