@@ -2,6 +2,8 @@ const earthRadius = 6371000;
 
 exports.distanceBetween3D = distanceBetween3D;
 exports.latLongToPoint = latLongToPoint;
+exports.maxDepth = maxDepth;
+exports.earthRadius = earthRadius;
 
 function distanceBetween3D(point1, point2) {
   if(point1.x === undefined || point1.y === undefined || point1.z === undefined) {
@@ -35,4 +37,13 @@ function latLongToPoint(lat, long, radius=earthRadius) {
 
 function distanceBetween2D(point1, point2) {
   console.log("Not defined because I'm lazy");
+}
+
+// Because of trigonometry, we know that the maximum "depth" of a chord across
+// a circle is equal to the radius minus the square root of the radius squared
+// minus one quarter of the distance between the two points squared
+function maxDepth(point1, point2, radius=earthRadius) {
+  let dist = distanceBetween3D(point1, point2);
+  let depth = radius - Math.sqrt(Math.pow(radius, 2) - (0.25 * Math.pow(dist, 2)));
+  return depth;
 }
