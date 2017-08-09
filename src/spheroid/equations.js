@@ -31,7 +31,10 @@ const pointsAreDefined = (point1, point2) => {
   return true;
 };
 
-const pointIsDefined = point => point1.x === undefined || point1.y === undefined || point1.z === undefined;
+const pointIsDefined = point =>
+  point1.x === undefined ||
+  point1.y === undefined ||
+  point1.z === undefined;
 
 const pointsAreNum = (point1, point2) =>
   typeof point1.x === 'number' &&
@@ -54,7 +57,7 @@ function latLongToPoint(lat, long, radius=earthRadius) {
 }
 
 function distanceBetween2D(point1, point2) {
-  console.log('THE EARTH IS AN OBLIQUE SPHEROID');
+  console.log('THE EARTH IS AN OBLATE SPHEROID');
 }
 
 // Because of trigonometry, we know that the maximum 'depth' of a chord across
