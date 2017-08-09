@@ -4,6 +4,8 @@ const program = require('commander');
 const co = require('co');
 const prompt = require('co-prompt');
 
+const main = require('./spheroid/main');
+
 const version = '0.1.0';
 
 let testtmp;
