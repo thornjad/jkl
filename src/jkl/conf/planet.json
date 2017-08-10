@@ -1,0 +1,6 @@
+{
+  "earth" : {
+    "name" : "Earth",
+    "radius": 6371000,
+  }
+}

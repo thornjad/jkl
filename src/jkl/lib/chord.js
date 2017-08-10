@@ -1,9 +1,8 @@
-exports.distanceBetween3D = distanceBetween3D;
-exports.latLongToPoint = latLongToPoint;
-exports.maxDepth = maxDepth;
-exports.earthRadius = earthRadius;
+const planet = require('../conf/planet.json');
 
-const earthRadius = 6371000;
+exports.maxDepth = maxDepth;
+exports.distanceBetween3D = distanceBetween3D;
+exports.distanceBetween2D = distanceBetween2D;
 
 function distanceBetween3D(point1, point2) {
   if (pointsAreValid(point1, point2)) {
@@ -34,26 +33,6 @@ const pointsAreNum = (point1, point2) =>
   typeof point2.y === 'number' &&
   typeof point2.z === 'number';
 
-function latLongToPoint(lat, lon) {
-  const phi = getPhi(lat);
-  const theta = getTheta(lon);
-  const point = createPoint(phi, theta);
-  return point;
-}
-
-const getPhi = lat => (90 - lat) * (Math.PI / 180);
-const getTheta = lon => (lon + 180) * (Math.PI / 180);
-const getX = (r, p, t) => -(r * Math.sin(p) * Math.cos(t));
-const getY = (r, p) => r * Math.cos(p);
-const getZ = (r, p, t) => r * Math.sin(p) * Math.sin(t);
-
-const createPoint = (phi, theta, radius = earthRadius) => {
-  x = getX(radius, phi, theta);
-  y = getY(radius, phi);
-  z = getZ(radius, phi, theta);
-  return {x: x, y: y, z: z};
-}
-
 function distanceBetween2D(point1, point2) {
   console.log('THE EARTH IS AN OBLATE SPHEROID');
 }
@@ -62,7 +41,7 @@ function distanceBetween2D(point1, point2) {
 // a circle is equal to the radius minus the square root of the radius squared
 // minus one quarter of the distance between the two points squared. In other
 // words, because math.
-function maxDepth(point1, point2, radius = earthRadius) {
+function maxDepth(point1, point2, radius = planet.earth.radius) {
   const dist = distanceBetween3D(point1, point2);
   const depth = radius - Math.sqrt(Math.pow(radius, 2) - (0.25 * Math.pow(dist, 2)));
   return depth;
