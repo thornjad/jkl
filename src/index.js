@@ -4,7 +4,7 @@ const program = require('commander');
 const co = require('co');
 const prompt = require('co-prompt');
 
-const main = require('./jkl/main');
+const main = require('./jkl');
 const pjson = require('../package.json')
 
 let testtmp;

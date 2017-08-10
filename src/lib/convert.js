@@ -1,4 +1,4 @@
-const planet = require('../conf/planet.json');
+const planet = require('../conf/planet');
 
 exports.letLonToPoint = latLonToPoint;
 

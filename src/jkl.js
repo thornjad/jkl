@@ -1,4 +1,4 @@
-const planet = require('./conf/planet.json');
+const planet = require('./conf/planet');
 
 const convert = require('./lib/convert');
 const chord = require('./lib/chord');
@@ -9,5 +9,7 @@ const chord = require('./lib/chord');
 // return distance, depth
 
 const calculateChord = (lat, lon) => {
+  const point1 = convert.latLonToPoint(lat);
+  const point2 = convert.latLonToPoint(lon);
 
 }

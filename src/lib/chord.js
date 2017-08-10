@@ -1,4 +1,6 @@
-const planet = require('../conf/planet.json');
+const planet = require('../conf/planet');
+
+const module = new Module();
 
 exports.maxDepth = maxDepth;
 exports.distanceBetween3D = distanceBetween3D;
