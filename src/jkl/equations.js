@@ -1,9 +1,9 @@
-const earthRadius = 6371000;
-
 exports.distanceBetween3D = distanceBetween3D;
 exports.latLongToPoint = latLongToPoint;
 exports.maxDepth = maxDepth;
 exports.earthRadius = earthRadius;
+
+const earthRadius = 6371000;
 
 function distanceBetween3D(point1, point2) {
   if (pointsAreValid(point1, point2)) {
@@ -17,19 +17,9 @@ const pointsAreValid = (point1, point2) =>
   pointsAreDefined(point1, point2) &&
   pointsAreNum(point1, point2);
 
-const pointsAreDefined = (point1, point2) => {
-  if (pointIsDefined(point1)) {
-    console.log('Invalid point 1: Must define x, y, and z coordinates');
-    return false;
-  }
-
-  if (pointIsDefined(point2)) {
-    console.log('Invalid point 2: Must define x, y, and z coordinates');
-    return false;
-  }
-
-  return true;
-};
+const pointsAreDefined = (point1, point2) =>
+  pointIsDefined(point1) &&
+  pointIsDefined(point2);
 
 const pointIsDefined = point =>
   point1.x === undefined ||
@@ -44,16 +34,24 @@ const pointsAreNum = (point1, point2) =>
   typeof point2.y === 'number' &&
   typeof point2.z === 'number';
 
-function latLongToPoint(lat, long, radius=earthRadius) {
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (long + 180) * (Math.PI / 180);
-
-  x = -((radius) * Math.sin(phi) * Math.cos(theta));
-  y = ((radius) * Math.cos(phi));
-  z = ((radius) * Math.sin(phi) * Math.sin(theta));
-
-  const point = {x: x, y: y, z: z};
+function latLongToPoint(lat, lon) {
+  const phi = getPhi(lat);
+  const theta = getTheta(lon);
+  const point = createPoint(phi, theta);
   return point;
+}
+
+const getPhi = lat => (90 - lat) * (Math.PI / 180);
+const getTheta = lon => (lon + 180) * (Math.PI / 180);
+const getX = (r, p, t) => -(r * Math.sin(p) * Math.cos(t));
+const getY = (r, p) => r * Math.cos(p);
+const getZ = (r, p, t) => r * Math.sin(p) * Math.sin(t);
+
+const createPoint = (phi, theta, radius = earthRadius) => {
+  x = getX(radius, phi, theta);
+  y = getY(radius, phi);
+  z = getZ(radius, phi, theta);
+  return {x: x, y: y, z: z};
 }
 
 function distanceBetween2D(point1, point2) {
@@ -64,7 +62,7 @@ function distanceBetween2D(point1, point2) {
 // a circle is equal to the radius minus the square root of the radius squared
 // minus one quarter of the distance between the two points squared. In other
 // words, because math.
-function maxDepth(point1, point2, radius=earthRadius) {
+function maxDepth(point1, point2, radius = earthRadius) {
   const dist = distanceBetween3D(point1, point2);
   const depth = radius - Math.sqrt(Math.pow(radius, 2) - (0.25 * Math.pow(dist, 2)));
   return depth;
