@@ -20,5 +20,5 @@ program
   .parse(process.argv);
 
 co(function * () {
-  console.log(`jkl ${pjson.version}`);
-})
+  console.log(`jkl ${pjson.version}\n`);
+});

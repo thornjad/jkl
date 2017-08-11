@@ -1,6 +1,4 @@
-const planet = require('../conf/planet');
-
-exports.letLonToPoint = latLonToPoint;
+exports.latLonToPoint = latLonToPoint;
 
 // TODO km to mi
 // TODO mi to km
