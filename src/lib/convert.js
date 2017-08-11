@@ -16,7 +16,7 @@ const getX = (r, p, t) => -(r * Math.sin(p) * Math.cos(t));
 const getY = (r, p) => r * Math.cos(p);
 const getZ = (r, p, t) => r * Math.sin(p) * Math.sin(t);
 
-const createPoint = (phi, theta, radius = planet.earth.radius) => {
+const createPoint = (phi, theta, radius) => {
   x = getX(radius, phi, theta);
   y = getY(radius, phi);
   z = getZ(radius, phi, theta);

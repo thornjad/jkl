@@ -39,8 +39,7 @@ function distanceBetween2D(point1, point2) {
 // a circle is equal to the radius minus the square root of the radius squared
 // minus one quarter of the distance between the two points squared. In other
 // words, because math.
-function maxDepth(point1, point2, radius = planet.earth.radius) {
-  const dist = distanceBetween3D(point1, point2);
+function maxDepth(point1, point2, radius, dist) {
   const depth = radius - Math.sqrt(Math.pow(radius, 2) - (0.25 * Math.pow(dist, 2)));
   return depth;
 }

@@ -3,13 +3,20 @@ const planet = require('./conf/planet');
 const convert = require('./lib/convert');
 const chord = require('./lib/chord');
 
-// main program
+function main(latLonPointMap) {
+  if (latLonPointMap == {}) { // not supplied
 
-// take lat, lon
-// return distance, depth
+  }
+}
 
-const calculateChord = (lat, lon) => {
-  const point1 = convert.latLonToPoint(lat);
-  const point2 = convert.latLonToPoint(lon);
-
+const calculateChord = (latLonPointMap) => {
+  const point1 = convert.latLonToPoint(latLonPointMap.point1);
+  const point2 = convert.latLonToPoint(latLonPointMap.point2);
+  // TODO determine planet, default earth
+  const dist = chord.distanceBetween3D(point1, point2);
+  const depth = chord.maxDepth(point1, point2, planet.earth.radius, dist);
+  return {
+    "dist": dist,
+    "depth": depth
+  }
 }
