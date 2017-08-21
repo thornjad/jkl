@@ -7,16 +7,19 @@ const prompt = require('co-prompt');
 const main = require('./jkl');
 const pjson = require('../package.json')
 
+const verbosity = 0;
+
 let testtmp;
 
-// TODO --verbose
+const increaseVerbosity = (v) => ++verbosity;
 
 program
   .version(pjson.version)
   .arguments('[tst]');
 
 program
-  .option('-b, --bbq', 'Add BBQ sauce');
+  .option('-b, --bbq', 'Add BBQ sauce')
+  .option('-v, --verbose', 'Increase verbose output', increaseVerbosity, 0);
 
 program
   .option('-f, --flat', 'Assume Earth is flat')
