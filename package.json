@@ -1,7 +1,7 @@
 {
   "name": "jkl",
   "version": "0.1.0",
-  "description": "",
+  "description": "Calculate the straight-line distance between any two points on Earth",
   "main": "src/index.js",
   "engines": {
     "node": "^6.0.0"
@@ -26,8 +26,6 @@
   },
   "homepage": "https://github.com/raindeer44/jkl#readme",
   "dependencies": {
-    "co": "^4.6.0",
-    "co-prompt": "^1.0.0",
     "commander": "^2.11.0"
   }
 }
