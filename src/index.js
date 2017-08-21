@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const co = require('co');
-const prompt = require('co-prompt');
 
 const main = require('./jkl');
 const pjson = require('../package.json')
 
+// TODO export verbosity?
 const verbosity = 0;
 
 let testtmp;
@@ -15,10 +14,10 @@ const increaseVerbosity = (v) => ++verbosity;
 
 program
   .version(pjson.version)
-  .arguments('[tst]');
+  .usage('[options] <latitude> <longitude>');
 
 program
-  .option('-b, --bbq', 'Add BBQ sauce')
+  .option('-b, --bbq', 'Add BBQ sauce [false]', false)
   .option('-v, --verbose', 'Increase verbose output', increaseVerbosity, 0);
 
 program
@@ -30,6 +29,4 @@ program
 
 program.parse(process.argv);
 
-co(function * () {
-  console.log(`jkl ${pjson.version}\n`);
-});
+if (!program.args.length) program.help():
