@@ -31,10 +31,6 @@ const pointsAreNum = (point1, point2) =>
   typeof point2.y === 'number' &&
   typeof point2.z === 'number';
 
-function distanceBetween2D(point1, point2) {
-  console.log('THE EARTH IS AN OBLATE SPHEROID');
-}
-
 // Because of trigonometry, we know that the maximum 'depth' of a chord across
 // a circle is equal to the radius minus the square root of the radius squared
 // minus one quarter of the distance between the two points squared. In other
